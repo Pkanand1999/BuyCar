@@ -1,6 +1,6 @@
 const express = require('express');
 
-let {register,login,loginByGoogle}=require('../controller/authController');
+let {register,login}=require('../controller/authController');
 const authLoginUser = require('../middlewares/authMiddleware');
 const UserAuth=express.Router();
 

@@ -63,24 +63,8 @@ async function loggedInUser(token) {
     return reload;
 }
 
-async function loginByGoogle(data){
-    // console.log(data.email);
-    let userExist = await User.findOne({email:data.email});
-    if(userExist){ 
-        userExist=userExist.toJSON();
-        let token=await generateToken(userExist);
-        userExist.token=token;
-        let user = {...userExist}
-        return {user};
-    }
-    let user = await User.create({name:data.name,email:data.email,image:data.picture,authMode:"google-redirect"});
-    user=user.toJSON();
-    console.log(user);
-    let token=await generateToken(user);
-        user.token=token;
-        return {user};
-}
+
 
 module.exports = {
-    register,login,loggedInUser,loginByGoogle,
+    register,login,loggedInUser,
 }
