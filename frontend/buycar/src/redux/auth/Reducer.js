@@ -48,6 +48,18 @@ const initialState = {
             posts:[...action.payload]
           }
         }
+        case "GET_INVENTORY":{
+          return{
+            ...state,
+            posts:[...action.payload]
+          }
+        }
+        case "FILTER_POST":{
+          return{
+            ...state,
+            posts:[...action.payload]
+          }
+        }
         case "COMMENT":{
           return{...state,
           comments:[...action.payload]}

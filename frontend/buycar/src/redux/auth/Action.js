@@ -5,7 +5,6 @@ let base=`${process.env.REACT_APP_BASE_URL}`
 export function signupUser(data,dispatch){
   axios.post(`${base}/users/register`,data )
   .then((res)=>{
-    console.log(res);
       dispatch({
           type:"SIGNUP_SUCCESS",
           payload:true
@@ -25,7 +24,6 @@ export function signupUser(data,dispatch){
 export function login(data,dispatch){
   axios.post(`${base}/users/login`,data )
       .then((res)=>{
-          console.log(res.data)
           localStorage.setItem('cartoken',res.data.token)
           dispatch({
               type:"LOGIN_SUCCESS",
@@ -45,7 +43,6 @@ export function login(data,dispatch){
 
 
 export function userIsLoggedIn(authToken,dispatch){
-  console.log("user is logged in")
     fetch(`${base}/users/loggedInUser`, {
         headers: {
           'authorization': `Bearer ${authToken}`
@@ -66,7 +63,6 @@ dispatch({
 export function allpost(dispatch,param){
   axios.get(`${base}/cars/getcar`, param)
   .then(res=>{
-    console.log(res.data)
     dispatch({
       type:"ALL_POST",
       payload:res.data
@@ -75,7 +71,6 @@ export function allpost(dispatch,param){
 }
 
 export function newpost(data,dispatch) {
-  console.log(data)
   axios.post(`${base}/cars/postcar`,data)
   .then(res=>{
     alert('post created successfully')
@@ -89,7 +84,6 @@ export function newpost(data,dispatch) {
 export function commentonpost(data){
   axios.post(`${base}/chat/create`,data)
   .then(res=>{
-    console.log(res)
     alert('comment added successfully')
   })
   .catch(err=>{
@@ -101,7 +95,6 @@ export function commentonpost(data){
 export function getcomment(id,dispatch){
     axios.get(`${base}/chat/getchat/${id}`)
     .then(res=>{
-console.log(res.data)
 dispatch({
   type:'COMMENT',
   payload: res.data
@@ -112,6 +105,49 @@ dispatch({
 })
 }
 
+
+export function getinventory(id,dispatch){
+  axios.get(`${base}/cars/getinventory/${id}`)
+  .then(res=>{
+    dispatch({
+      type:"GET_INVENTORY",
+      payload:res.data
+    })
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+
+
+export function filterpost(param,dispatch){
+  console.log(param)
+  axios.get(`${base}/cars/getcar?${param}`)
+  .then(res=>{
+    console.log(res)
+    console.log(res)
+    console.log(res)
+    dispatch({
+      type:"FILTER_POST",
+      payload:res.data
+    })
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+
+export function updatethis(id,data,dispatch){
+  axios.put(`${base}/cars/update/${id}`,data)
+  .then(res=>{
+    alert("update successfully")
+  }).catch(err=>{console.log(err)});
+}
+
+export function deleteObj(id){
+  axios.delete(`${base}/cars/delete/${id}`)
+  .then(res=>{
+    alert("delete successfully")
+  }).catch(err=>{console.log(err)});
+}
 
 
 

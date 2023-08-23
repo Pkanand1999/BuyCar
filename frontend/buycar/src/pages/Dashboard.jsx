@@ -1,15 +1,36 @@
 import React,{useState,useEffect} from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector ,useDispatch} from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getinventory } from '../redux/auth/Action'
+import { filterpost,allpost } from '../redux/auth/Action'
 
 function Dashboard() {
     const [Post,setPost]=useState([])
+    const [id,setId]=useState('')
+    const [query,setQusery]=useState('')
     const data=useSelector((e)=>{
-        return e.reducer.posts
+        // setId(e.reducer.id)
+        return e.reducer
       })
+      const dispatch=useDispatch();
       useEffect(()=>{
-        setPost([...data])
-      },[data])
+        setPost([...data.posts])
+        setId(data.id)
+      },[data,query])
+
+      useEffect(()=>{
+        if(query==""){
+            allpost(dispatch)
+        }
+        if(query){
+            filterpost(query,dispatch)
+        }
+       
+      },[query])
+
+      function fetchpost(){
+        getinventory(id,dispatch)
+      }
 
 
   return (
@@ -17,7 +38,34 @@ function Dashboard() {
         <div className='w-[80%] text-center mt-8 mb-10 flex flex-col gap-10'>
             <div className='flex gap-10'>
                 <Link to='/create'><button className='bg-green-500 text-md font-bold p-2 rounded-sm'>Create Post</button></Link>
-                <Link to='/inventory'><button className='bg-green-500 text-md font-bold p-2 rounded-sm'>Inventory</button></Link>
+                <button className='bg-green-500 text-md font-bold p-2 rounded-sm flex' onClick={fetchpost}>My Posts</button>
+                <select className='bg-green-500 text-md font-bold p-2 rounded-sm flex' onChange={(e)=>setQusery(`price=${e.target.value}`)}>
+                    <option value=""> Filter By Price</option>
+                    <option value="100000"> Less then ₹ 100000</option>
+                    <option value="200000"> Less then ₹ 200000</option>
+                    <option value="400000"> Less then ₹ 400000</option>
+                    <option value="800000"> Less then ₹ 800000</option>
+                    <option value="1600000"> Less then ₹ 1600000</option>
+                    <option value="3200000"> Less then ₹ 3200000</option>
+                </select>
+                <select className='bg-green-500 text-md font-bold p-2 rounded-sm flex' onChange={(e)=>setQusery(`mileage${e.target.value}`)}>
+                    <option value=""> Filter By Mileage</option>
+                    <option value="10"> Less then 10 KMPL</option>
+                    <option value="20"> Less then 20 KMPL</option>
+                    <option value="30"> Less then 30 KMPL</option>
+                    <option value="40"> Less then 40 KMPL</option>
+                    <option value="50"> Less then 50 KMPL</option>
+                    <option value="60"> Less then 60 KMPL</option>
+                </select>
+                <select className='bg-green-500 text-md font-bold p-2 rounded-sm flex' onChange={(e)=>setQusery(`color=${e.target.value}`)}>
+                    <option value=""> Filter By Colour</option>
+                    <option value="red"> Red</option>
+                    <option value="blue"> Blue</option>
+                    <option value="green"> Green</option>
+                    <option value="gray"> Gray</option>
+                    <option value="black"> Black</option>
+                    <option value="white"> White</option>
+                </select>
                 </div>
             {
                 Post.map((post,i)=>{

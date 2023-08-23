@@ -5,7 +5,7 @@ import Postpage from '../pages/Postpage'
 import Createpost from '../pages/Createpost'
 import { Routes, Route } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
-import Inventory from '../pages/Inventory'
+import Edit from '../pages/Edit'
 
 
 function Router() {
@@ -17,7 +17,7 @@ function Router() {
           <Route path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
           <Route path="/post/:id" element={<PrivateRoute><Postpage/></PrivateRoute>} />
           <Route path="/create" element={<PrivateRoute><Createpost/></PrivateRoute>} />
-          <Route path="/inventory" element={<PrivateRoute><Inventory/></PrivateRoute>} />
+          <Route path="/edit/:id" element={<PrivateRoute><Edit/></PrivateRoute>} />
         </Routes>
     </>
   )

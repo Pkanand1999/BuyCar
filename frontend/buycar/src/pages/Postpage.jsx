@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { useState,  } from 'react'
 import { useSelector,useDispatch } from 'react-redux';
-import { commentonpost, getcomment } from '../redux/auth/Action';
+import { commentonpost, deleteObj, getcomment } from '../redux/auth/Action';
+import { Link } from 'react-router-dom';
 
 
 function Postpage() {
@@ -23,7 +24,7 @@ function Postpage() {
         }
     }, [id])
 
-    console.log(data.comments,"comments")
+    // console.log(data.comments,"comments")
     //  fetch post function 
     async function fetching(id) {
         try {
@@ -48,6 +49,9 @@ function postComment(event){
     commentonpost(detail)
     fetchComment(id)
 }
+function delobj(){
+    deleteObj(id)
+}
 
     return (
         <div className="min-h-screen w-screen bg-gradient-to-r from-gray-500 via-blue-500 to-pink-500 ... flex justify-center">
@@ -57,8 +61,8 @@ function postComment(event){
                     <div className='flex mt-4 items-center'>
                         <div className='w-[5%] rounded-full ml-6'><img className='rounded-full' src={post.userimage} alt="Avatar" /></div>
                         <div className='flex gap-12 ml-6 font-bold text-2xl'><h1>{post.username}</h1>
-                        {post.userid==data.id?<div className='flex gap-6'><button className='bg-green-500 text-xl font-sm p-1 rounded-sm'>Edit</button>
-                        <button className='bg-green-500 text-xl font-sm p-1 rounded-sm'>Delete</button> </div>: ""}
+                        {post.userid==data.id?<div className='flex gap-6'><Link to={`/edit/${id}`}><button className='bg-green-500 text-xl font-sm p-1 rounded-sm'>Edit</button></Link>
+                        <button className='bg-green-500 text-xl font-sm p-1 rounded-sm' onClick={delobj}>Delete</button> </div>: ""}
                         </div>
                     </div>
                     <div className='mb-6 mt-2 text-left mr-12 ml-12'>
@@ -68,11 +72,11 @@ function postComment(event){
                         <h1 className='text-4xl font-bold text-left '>{post.title}</h1>
                         <ul className='ml-6'>
                             <li><span className='font-bold'>Brand : </span>{post.brand}</li>
-                            <li><span className='font-bold'>Price : </span>{post.price}</li>
+                            <li><span className='font-bold'>Price : </span>₹ {post.price}</li>
                             <li><span className='font-bold'>Colour : </span>{post.color}</li>
-                            <li><span className='font-bold'>Mileage : </span>{post.mileage}</li>
-                            <li><span className='font-bold'>Power : </span>{post.power}</li>
-                            <li><span className='font-bold'>Max Speed : </span>{post.maxspeed}</li>
+                            <li><span className='font-bold'>Mileage : </span>{post.mileage} kmpl</li>
+                            <li><span className='font-bold'>Power : </span>{post.power} bhp</li>
+                            <li><span className='font-bold'>Max Speed : </span>{post.maxspeed} kmph</li>
                         </ul>
                         </div>
                         </div>

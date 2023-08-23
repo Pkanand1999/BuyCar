@@ -27,9 +27,9 @@ function Navbar() {
     if (data.token) {
       userIsLoggedIn(data.token, dispatch);
     }
-    if (data.token) {
-      allpost(dispatch)
-    }
+    // if (data.token) {
+    //   allpost(dispatch)
+    // }
     if (!data.token) {
       navigate("/auth")
     }

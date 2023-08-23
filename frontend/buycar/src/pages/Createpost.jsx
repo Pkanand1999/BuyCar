@@ -21,8 +21,7 @@ const data=useSelector((e)=>{
 
 function createpost(){
    let usercontent={title:title,discription:content,username:data.name,userimage:data.image,userid:data.id,brand:brand,color:color,price:price,mileage:mileage,power:power,maxspeed:maxspeed,image:image}
-   console.log(maxspeed)
-   console.log(color)
+   
    newpost(usercontent,dispatch);
 }
 
