@@ -52,7 +52,7 @@ carRoute.post('/postcar',async(req,res)=>{
     try{
         let data = req.body
         let response = await postCarData(data)  //call postcardata function from carController
-        res.status(200).send(response)
+        res.status(201).send(response)
     }catch(err){
         res.status(500).send(err)
     }

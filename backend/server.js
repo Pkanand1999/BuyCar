@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const database= require('./db')
 const UserAuth = require('./router/authRouter')
 const carRoute = require('./router/carRouter')
+const chatRoute = require('./router/chatRouter')
 
 //load an eviroment variable from .env file
 require('dotenv').config()
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true })); // Parse incoming URL-encoded r
 app.use(morgan("dev")); // Log HTTP requests in the "dev" format
 app.use('/api/users',UserAuth)
 app.use('/api/cars',carRoute)
+app.use('/api/chat',chatRoute)
 
 
 
