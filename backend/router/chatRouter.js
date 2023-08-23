@@ -7,7 +7,7 @@ chatRoute.get('/getchat/:id',async (req,res)=>{
     try{
         let {id}=req.params
 console.log(id)
-        let resData = await Chat.find({userid:id})
+        let resData = await Chat.find({postid:id})
         res.status(200).send(resData)
     }catch(err){
         res.status(500).send(err)
