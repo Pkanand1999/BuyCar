@@ -37,10 +37,18 @@ const carSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    userimage:{
+        type: String,
+        required: true,
+    },
+    username:{
+        type: String,
+        required: true,
+    },
     discription:{
         type: String,
         required: true,
-    }
+    },
 },{
     timestamps:true
 })
