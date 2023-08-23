@@ -17,7 +17,7 @@ async function getCarById(id){
 
 // get car by userid
 async function getCarByUserId(id){
-    let data = await Cars.findOne({userid:id})
+    let data = await Cars.find({userid:id})
     return data;
 }
 

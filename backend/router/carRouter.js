@@ -35,11 +35,11 @@ carRoute.get('/getcar/:id', async function(req, res) {
 
 
 // get car by userid
-carRoute.get('/getinventory', async function(req, res) {
+carRoute.get('/getinventory/:id', async function(req, res) {
     try{
-        let id = req.body
+        let{id} = req.params
         console.log(id)
-        let data = await getCarByUserId(id.userid)   //call getcarbyuserid function from carController
+        let data = await getCarByUserId(id)   //call getcarbyuserid function from carController
         res.status(200).send(data)
 
     }catch(err){
