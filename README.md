@@ -28,7 +28,7 @@ Welcome to the Second-Hand Car Selling Website! This platform allows users to bu
 
 1. **Clone the Repository**: 
    ```
-   git clone https://github.com/yourusername/second-hand-car-website.git
+   git clone https://github.com/Pkanand1999/BuyCar.git
    ```
 
 2. **Set Up the Environment**: 
