@@ -13,7 +13,7 @@ Welcome to the Second-Hand Car Selling Website! This platform allows users to bu
 - **Create and Manage Listings**: 
   - Users can create listings for the cars they want to sell.
   - Listings include details such as car model, year, mileage, price, and color.
-  - Users can view, edit, and delete their own listings.
+  - Users view their own post they see the button edit, and delete and able to delete, and edit their own listings.
 
 - **Filter Listings**: 
   - Users can filter car listings by mileage, price, and color to find the perfect match.
